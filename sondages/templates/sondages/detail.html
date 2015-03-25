@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}La Chête - Les sondages{% endblock %}
+
+{% block style %}
+    <!-- Custom styles for this template -->
+    <link href="/sondages/static/sondages/carousel.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{%  url 'sondages:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choix in question.choix_set.all %}
+    <input type="radio" name="choix" id="choix{{  forloop.counter }}" value="{{ choix.id }}" />
+    <label for="choix{{  forloop.counter }}">{{ choix.choix_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Voter">
+</form>
+
+{% endblock %}

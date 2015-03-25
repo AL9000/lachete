@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}La Chête - Les sondages{% endblock %}
+
+{% block style %}
+    <!-- Custom styles for this template -->
+    <link href="/sondages/static/sondages/carousel.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <h1>Les derniers sondages</h1>
+    {% if latest_question_list %}
+        {% for question in latest_question_list %}
+
+            <p class="lead"><a href="{% url 'sondages:detail' question.id %}">{{ question.question_text }}</a><br/>Question posée le {{ question.pub_date }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Aucuns sondages disponibles.</p>
+    {% endif %}
+{% endblock %}
