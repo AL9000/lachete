@@ -4,7 +4,6 @@
 
 {% block content %}
 
-    {# TODO Modifier css jumbotron padding top et bottom, c'est beaucoup trop gros actuellement.#}
     <div class="jumbotron">
         <h1>Les sondages</h1>
         {% if last_question %}
@@ -34,6 +33,7 @@
         <p>Aucuns sondages disponibles pour le moment.</p>
     {% endif %}
 
+    {# TODO Le tableau des sondages terminé ne s'affiche pas comme celui des autres sondages en cours, pourkeua ?#}
     <h2>Sondages terminés</h2>
     {% if closed_question_list %}
         <table class="table table-striped table-hover">

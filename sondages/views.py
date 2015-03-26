@@ -53,6 +53,9 @@ class ResultsView(generic.DetailView):
 
 def vote(request, question_id):
     p = get_object_or_404(Question, pk=question_id)
+    # Si la question est close, on redirige vers le résultat du sondage
+    if not p.open:
+        return HttpResponseRedirect(reverse('sondages:resultats', args=(p.id,)))
     try:
         selected_choix = p.choix_set.get(pk=request.POST['choix'])
     except (KeyError, Choix.DoesNotExist):

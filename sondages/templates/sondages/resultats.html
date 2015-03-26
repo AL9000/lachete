@@ -11,6 +11,13 @@
 
     <h1>{{ question.question_text }} <small>Les résultats</small></h1>
 
+    {% if not question.open %}
+        <div class="alert alert-dismissible alert-warning">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Ce sondage est actuellement <strong>terminé</strong>, les votes sont clos.
+        </div>
+    {% endif %}
+
     <ul>
         {% for choix in question.choix_set.all %}
             <li>{{ choix.choix_text }} -- {{ choix.votes }} vote{{  choix.votes|pluralize }}</li>
