@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'chete',
     'sondages',
     'website',
+    'gps',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,3 +92,6 @@ STATICFILES_DIRS = (
 )
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR),)
+
+FIELD_POSITION = {'latitude': 47.214815,
+                  'longitude': -1.555203}
