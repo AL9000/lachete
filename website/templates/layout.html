@@ -54,21 +54,10 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             {% comment %}TODO Change active tab{% endcomment %}
-                            <li class="active"><a href="#">Home</a></li>
+                            <li class="active"><a href="{% url "website:home" %}">Accueil</a></li>
                             <li><a href="{% url 'sondages:index' %}">Sondages</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="dropdown-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="{% url 'gps:gps' %}">Venir !</a></li>
+                            <li><a href="#">Souvenirs</a></li>
                         </ul>
                     </div>
                 </div>
