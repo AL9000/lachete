@@ -93,5 +93,5 @@ STATICFILES_DIRS = (
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR),)
 
-FIELD_POSITION = {'latitude': 47.214815,
-                  'longitude': -1.555203}
+FIELD_POSITION = {'latitude': 47.206248,
+                  'longitude': -2.138146}
