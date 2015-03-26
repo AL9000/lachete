@@ -40,7 +40,7 @@
 
       var request = {
         origin: myLatlng,
-        destination: new google.maps.LatLng(47.214815,-1.555203,17),
+        destination: new google.maps.LatLng({{ field_position.latitude }},{{ field_position.longitude }},17),
         travelMode: google.maps.TravelMode.DRIVING
       }
        directionsDisplay.setMap(map);
