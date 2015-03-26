@@ -1,6 +1,8 @@
 {% extends 'website/templates/layout.html' %}
 {% block title%}La Chête - Un champ, une fête ! GPS{% endblock %}
 {% block style %}
+    {% comment %}TODO Ganapati: le top serait un bloc fixe avec dedans les étapes en scrollable bloc de 50% en bas{% endcomment %}
+    {% comment %}TODO Ganapati: refresh du parcours trop rapide sur Android, à régler{% endcomment %}
 <style>
   #map {width:100%;height:50%;}
   #map-panel {width:100%;height:50%;overflow: hidden;}
@@ -16,10 +18,10 @@
         var directionsService = new google.maps.DirectionsService();
         var directionsDisplay = new google.maps.DirectionsRenderer();
         initGeolocation();
-    
+
     function initGeolocation() {
     if (navigator && navigator.geolocation) {
-    var watchId = navigator.geolocation.watchPosition(successCallback, 
+    var watchId = navigator.geolocation.watchPosition(successCallback,
                                                       errorCallback,
                                                       {enableHighAccuracy:true,timeout:60000,maximumAge:0});
 
@@ -27,7 +29,7 @@
       console.log('Geolocation is not supported');
     }
   }
- 
+
   function errorCallback() {}
 
   function successCallback(position) {

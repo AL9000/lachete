@@ -59,8 +59,17 @@
                             <li><a href="{% url 'sondages:index' %}">Sondages</a></li>
                             <li><a href="{% url 'gps:gps' %}">Venir !</a></li>
                             <li><a href="#">Souvenirs</a></li>
+                            <li><a href="#">Souvenirs</a></li>
                         </ul>
                     </div>
+
+                    <!-- Si l'utilisateur est connecté, on lui propose seulement de se déconnecter, sinon, de s'enregistrer ou de se connecter -->
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-primary navbar-right navbar-btn" href="#" role="button">Se déconnecter</a>
+                    {% else %}
+                        <a class="btn btn-success navbar-right navbar-btn" href="." role="button">S'enregistrer</a>
+                        <a class="btn btn-default navbar-right navbar-btn" href="#" role="button">Se connecter</a>
+                    {% endif %}
                 </div>
             </nav>
 
