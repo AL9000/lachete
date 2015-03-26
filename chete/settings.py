@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'chete',
     'sondages',
+    'website',
 )
 
 MIDDLEWARE_CLASSES = (
