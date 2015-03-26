@@ -8,6 +8,12 @@
     {# TODO Permettre de revenir à la page précédente, breadcrum ??? #}
 
     <h1>{{ question.question_text }} <small>Séléctionne ton choix et vote !</small></h1>
+    {% for question in questions %}
+        {# Each "contact" is a Contact model object. #}
+        {{ question.question_text|upper }}<br />
+        ...
+    {% endfor %}
+    ZBOUB
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -29,8 +35,27 @@
     {% endif %}
 
     <ul class="pager">
-        <li class="previous disabled"><a href="#">← Précédente</a></li>
-        <li class="next"><a href="#">Suivante →</a></li>
+        {% if questions.has_previous %}
+            <li class="previous disabled"><a href="?page={{ questions.previous_page_number }}">← Précédente</a></li>
+        {% endif %}
+        {% if questions.has_next %}
+            <li class="previous disabled"><a href="?page={{ questions.next_page_number }}">Suivante →</a></li>
+        {% endif %}
     </ul>
+    <div class="pagination">
 
+    <span class="step-links">
+        {% if questions.has_previous %}
+            <a href="{% url "sondages:detail" questions.previous_page_number %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ questions.id }} of {{ questions.paginator.num_pages }}.
+        </span>
+
+        {% if questions.has_next %}
+            <a href="?page={{ questions.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}

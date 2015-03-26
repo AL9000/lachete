@@ -57,7 +57,7 @@
                             {% comment %}TODO Change active tab{% endcomment %}
                             <li class="active"><a href="{% url "website:home" %}">Accueil</a></li>
                             <li><a href="{% url 'sondages:index' %}">Sondages</a></li>
-                            <li><a href="{% url 'gps:gps' %}">Venir !</a></li>
+                            <li><a href="{% url 'gps:index' %}">Venir !</a></li>
                             <li><a href="#">Photos</a></li>
                             <li><a href="#">Blog</a></li>
                         </ul>
@@ -65,7 +65,6 @@
 
                     <!-- Si l'utilisateur est connecté, on lui propose seulement de se déconnecter, sinon, de s'enregistrer ou de se connecter -->
                     {% if user.is_authenticated %}
-                        <a class="btn btn-primary navbar-right navbar-btn" href="#" role="button">Se déconnecter</a>
                     {% else %}
                         <a class="btn btn-success navbar-right navbar-btn" href="." role="button">S'enregistrer</a>
                         <a class="btn btn-default navbar-right navbar-btn" href="#" role="button">Se connecter</a>

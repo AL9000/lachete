@@ -1,10 +1,28 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from sondages.models import Question, Choix
+
+# TODO Paginator !!!
+def listing(request):
+    question_list = Question.objects.all()
+    paginator = Paginator(question_list, 25) # Show 25 questions per page
+
+    page = request.GET.get('page')
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        questions = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        questions = paginator.page(paginator.num_pages)
+
+    return render_to_response('sondages/detail.html', {"questions": questions})
 
 
 class IndexView(generic.ListView):
