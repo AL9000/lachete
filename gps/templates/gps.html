@@ -13,8 +13,8 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 <script>
     $( document ).ready(function() {
-        var map;
-        var directionsService = new google.maps.DirectionsService();
+        var init = false;
+       var directionsService = new google.maps.DirectionsService();
         var directionsDisplay = new google.maps.DirectionsRenderer();
         initGeolocation();
     
@@ -32,15 +32,15 @@
   function errorCallback() {}
 
   function successCallback(position) {
-    var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-     var myOptions = {
-      zoom: 15,
-      center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-      map = new google.maps.Map(document.getElementById("map"), myOptions);
-
-      var request = {
+      if (init == false){
+        var myLatlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+         var myOptions = {
+          zoom: 15,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+          map = new google.maps.Map(document.getElementById("map"), myOptions);
+         var request = {
         origin: myLatlng,
         destination: new google.maps.LatLng({{ field_position.latitude }},{{ field_position.longitude }},17),
         travelMode: google.maps.TravelMode.DRIVING
@@ -54,7 +54,12 @@
         }
      });
       directionsDisplay.setPanel(document.getElementById("map-panel"));
-}
+        init = true;
+
+        } else {
+            map.panTo(myLatlng);
+        }
+     }
 });
 
 </script>
