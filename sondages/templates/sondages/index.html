@@ -11,7 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <p>{{ last_question.question_text }}<br/><small>Question posée le {{ last_question.pub_date }}</small></p>
-                    <a class="btn btn-lg btn-primary" href="{% url 'sondages:detail' last_question.id %}" role="button">Voir les choix et voter</a>
+                    <a class="btn btn-primary" href="{% url 'sondages:detail' last_question.id %}" role="button">Voir les choix et voter</a>
                 </div>
             </div>
         {% else %}
