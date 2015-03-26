@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'chete',
     'sondages',
     'website',
+    'gps',
 )
 
 MIDDLEWARE_CLASSES = (
