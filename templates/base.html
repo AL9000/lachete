@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- TODO favicon pour la Chête
-    <link rel="icon" href="/static/img/favicon.ico">-->
+    {# TODO favicon pour la Chête#}
+    <!-- <link rel="icon" href="/static/img/favicon.ico">-->
 
     <title>{% block title %}La Chête - Un champ, une fête !{% endblock %}</title>
 
@@ -16,8 +16,8 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        {% comment %}TODO Add a "global.css" stylesheet ?{% endcomment %}
-        /* Because of fixed top navbar, must add this, see bootstrap doc*/
+        {% comment %}TODO Add a "global.css" stylesheet ?
+        Because of fixed top navbar, must add this, see bootstrap doc{% endcomment %}
         body { padding-top: 70px; }
     </style>
 
@@ -92,7 +92,13 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/static/js/jquery-1.11.2.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
-<!-- TODO IE10 viewport hack for Surface/desktop Windows 8 bug
- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+{% comment %}TODO A mettre uniquement sur sondages/detail.html{% endcomment %}
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+{# TODO IE10 viewport hack for Surface/desktop Windows 8 bug#}
+<!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 </body>
 </html>

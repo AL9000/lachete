@@ -9,14 +9,15 @@
 
 {% block content %}
 
-<h1>{{ question.question_text }}</h1>
+    <h1>{{ question.question_text }} <small>Les résultats</small></h1>
 
-<ul>
-    {% for choix in question.choix_set.all %}
-        <li>{{ choix.choix_text }} -- {{ choix.votes }} vote{{  choix.votes|pluralize }}</li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for choix in question.choix_set.all %}
+            <li>{{ choix.choix_text }} -- {{ choix.votes }} vote{{  choix.votes|pluralize }}</li>
+        {% endfor %}
+    </ul>
 
-<a href="{% url 'sondages:detail' question.id %}">Voter à nouveau ?</a>
+    <p>Question ouverte depuis le {{ question.pub_date }}</p>
+    <a type="button" class="btn btn-default" href="{% url 'sondages:detail' question.id %}">Voter à nouveau ?</a>
 
 {% endblock %}
