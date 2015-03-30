@@ -7,10 +7,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from sondages.models import Question, Choix
 
+
 # TODO Paginator !!!
 def listing(request):
     question_list = Question.objects.all()
-    paginator = Paginator(question_list, 25) # Show 25 questions per page
+    paginator = Paginator(question_list, 25)  # Show 25 questions per page
 
     page = request.GET.get('page')
     try:
@@ -39,11 +40,11 @@ class IndexView(generic.ListView):
         context['latest_question_list'] = Question.objects.filter(
             pub_date__lte=timezone.now(),
             open=True
-        ).order_by('-pub_date')[1:5]
+        ).order_by('-pub_date')[1:]
         context['closed_question_list'] = Question.objects.filter(
             pub_date__lte=timezone.now(),
             open=False
-        ).order_by('-pub_date')[:5]
+        ).order_by('-pub_date')
         return context
 
 

@@ -1,58 +1,118 @@
 {% extends 'website/templates/layout.html' %}
 
+{% load staticfiles %}
+
 {% block style %}
-    <link href="/website/static/website/css/carousel.css" rel="stylesheet">
+    <link href="{% static 'website/css/home.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
     <div class="jumbotron">
         <div class="container">
-            <h1>Bienvenu, ami chêteur !</h1>
+            <h1>Bienvenue, ami chêteur !</h1>
             <p>Retrouve toutes les applications de la Chête ici.</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Super ! &raquo;</a></p>
         </div>
     </div>
 
-    {% load staticfiles %}
+    {% comment %} TODO Mettre les dernières news :
+    - Lien vers le dernier article de blog
+    - Lien vers la dernière photo
+    {% endcomment %}
 
-    <div class="container marketing">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Dernier sondage :</h2>
+            {% if last_question %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>{{ last_question.question_text }}<br/><small>Question posée le {{ last_question.pub_date }}</small></p>
+                        <a class="btn btn-primary" href="{% url 'sondages:detail' last_question.id %}" role="button">Voir les choix et voter</a>
+                    </div>
+                </div>
+            {% else %}
+                <p>Bientôt un nouveau sondage ! Mais tu peux regarder les sondages terminés en dessous.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <h2>Dernier article :</h2>
+            {% if last_question %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>{{ last_question.question_text }}<br/><small>Question posée le {{ last_question.pub_date }}</small></p>
+                        <a class="btn btn-primary" href="{% url 'sondages:detail' last_question.id %}" role="button">Voir les choix et voter</a>
+                    </div>
+                </div>
+            {% else %}
+                <p>Bientôt un nouveau sondage ! Mais tu peux regarder les sondages terminés en dessous.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <h2>Derniere photo :</h2>
+            {% if last_question %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>{{ last_question.question_text }}<br/><small>Question posée le {{ last_question.pub_date }}</small></p>
+                        <a class="btn btn-primary" href="{% url 'sondages:detail' last_question.id %}" role="button">Voir les choix et voter</a>
+                    </div>
+                </div>
+            {% else %}
+                <p>Bientôt un nouveau sondage ! Mais tu peux regarder les sondages terminés en dessous.</p>
+            {% endif %}
+        </div>
+    </div>
+
     <hr class="featurette-divider">
 
-      <div class="row featurette">
+    <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">Les sondages. <span class="text-muted">Ton avis ne compte pas.</span></h2>
-          <p class="lead">Parce que chaques années, la Chête se doit d'entérer les éditions précédentes, on a besoin de ton avis !</p>
+            <h2 class="featurette-heading">Les sondages. <span class="text-muted">Ton avis ne compte pas.</span></h2>
+            <p class="lead">Parce que chaques années, la Chête se doit d'entérer les éditions précédentes, on a besoin de ton avis !</p>
+            <p><a class="btn btn-primary btn-lg" href="{% url "sondages:index" %}" role="button">Voir les sondages &raquo;</a></p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" src="{% static "website/images/we_need_you.jpg" %}" alt="We need you for the Chête !">
+            <img class="featurette-image img-responsive center-block" src="{% static "website/images/we_need_you.jpg" %}" alt="We need you for the Chête !">
         </div>
-      </div>
+    </div>
 
-      <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
-      <div class="row featurette">
+    <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Venir ! <span class="text-muted">A deux c'est mieux.</span></h2>
-          <p class="lead">Parce qu'on t'aime, on t'as même fait un GPS, c'est pas beau ça ?</p>
+            <h2 class="featurette-heading">Viendre ! <span class="text-muted">A deux c'est mieux.</span></h2>
+            <p class="lead">Parce qu'on t'aime, on t'as même fait un GPS, c'est pas beau ça ?</p>
+            <p><a class="btn btn-primary btn-lg" href="{% url "gps:index" %}" role="button">Voir les sondages &raquo;</a></p>
         </div>
         <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img class="featurette-image img-responsive center-block" src="{% static "website/images/satellite.jpg" %}" alt="Generic placeholder image">
         </div>
-      </div>
+    </div>
 
-      <hr class="featurette-divider">
+    <hr class="featurette-divider">
 
-      <div class="row featurette">
+    <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">Les photos. <span class="text-muted">Les souvenirs.</span></h2>
+            <p class="lead">Publie directement les photos sur le site de la Chête !</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Voir les sondages &raquo;</a></p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+            <img class="featurette-image img-responsive center-block" src="{% static "website/images/carousel1.jpg" %}" alt="Generic placeholder image">
         </div>
-      </div>
-
-      <hr class="featurette-divider">
     </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+            <h2 class="featurette-heading">Blog. <span class="text-muted">La force des années 2000.</span></h2>
+            <p class="lead">Parce qu'on est old school, on maintiens un blog avec les actualité de la Chête. Pleins d'infos inutiles à lire.</p>
+            <p><a class="btn btn-primary btn-lg" href="#" %}" role="button">Voir les sondages &raquo;</a></p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+            <img class="featurette-image img-responsive center-block" src="{% static "website/images/satellite.jpg" %}" alt="Generic placeholder image">
+        </div>
+    </div>
+
 {% endblock %}
