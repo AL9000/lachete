@@ -28,7 +28,7 @@ def listing(request):
 
 class IndexView(generic.ListView):
     model = Question
-    template_name = 'sondages/index.html'
+    template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -50,7 +50,7 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Question
-    template_name = 'sondages/detail.html'
+    template_name = 'detail.html'
 
     def get_queryset(self):
         """
@@ -61,7 +61,7 @@ class DetailView(generic.DetailView):
 
 class ResultsView(generic.DetailView):
     model = Question
-    template_name = 'sondages/resultats.html'
+    template_name = 'resultats.html'
 
     def get_queryset(self):
         """
