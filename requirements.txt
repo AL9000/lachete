@@ -1,1 +1,5 @@
 Django==1.7.7
+<<<<<<< HEAD
+=======
+djangorestframework
+>>>>>>> 36f9dd837770ce21cf0b067599911058b978219e
