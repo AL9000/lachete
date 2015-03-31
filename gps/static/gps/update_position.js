@@ -2,7 +2,7 @@
 
     // INCLUDE ONLY IF USER IS LOGGED
     update_position();
-    setTimeout(function() {update_position();}, 10000);
+    setTimeout(function() {update_position();}, 30000);
 
     function getCookie(name) {
         var cookieValue = null;
