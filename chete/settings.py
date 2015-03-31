@@ -99,8 +99,8 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR),)
 
-FIELD_POSITION = {'latitude': 47.206248,
-                  'longitude': -2.138146}
+FIELD_POSITION = {'latitude': '47.206248',
+                  'longitude': '-2.138146'}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
