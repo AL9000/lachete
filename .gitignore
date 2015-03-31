@@ -61,3 +61,6 @@ target/
 ## File-based project format:
 *.ipr
 *.iws
+
+# DB
+db.sqlite3
