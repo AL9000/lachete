@@ -32,19 +32,26 @@ class IndexView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['last_question'] = Question.objects.filter(
-            pub_date__lte=timezone.now(),
-            open=True
-        ).latest('pub_date')
+
+        try:
+            context['last_question'] = Question.objects.filter(
+                pub_date__lte=timezone.now(),
+                open=True
+            ).latest('pub_date')
+        except Question.DoesNotExist:
+            context['last_question'] = None
+
         """ latest_question_list ne contient pas la dernière question posée """
         context['latest_question_list'] = Question.objects.filter(
             pub_date__lte=timezone.now(),
             open=True
         ).order_by('-pub_date')[1:]
+
         context['closed_question_list'] = Question.objects.filter(
             pub_date__lte=timezone.now(),
             open=False
         ).order_by('-pub_date')
+
         return context
 
 
