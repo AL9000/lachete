@@ -61,3 +61,11 @@ target/
 ## File-based project format:
 *.ipr
 *.iws
+
+## Project
+migrations/
+db.sqlite3
+.ropeproject/
+
+## Venv
+lachete/
