@@ -20,6 +20,7 @@
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var map;
         var users = {};
+        var infowindow = {};
         var myLatLng;
         initGeolocation();
 
@@ -36,22 +37,28 @@
 
       function update_users_position() {
         $.getJSON( "/gps/users/", function( data ) {
-            $.each( data, function( val ) {
-                if (users[val['username']] == undefined) {
-                    users[val['username']] = new google.maps.Marker({
-                        position: new google.maps.LatLng(val['userposition__latitude'], 
-                                                         val['userposition__longitude']),
+            for (val in data) {
+                if (users[data[val].username] == undefined) {
+                    users[data[val].username] = new google.maps.Marker({
+                        position: new google.maps.LatLng(data[val].userposition__latitude, 
+                                                         data[val].userposition__longitude),
                         icon: {
                           path: google.maps.SymbolPath.CIRCLE,
-                          scale: 2
+                          scale: 5
                         },
                         map: map
                     });
+                    infowindow[data[val].username] = new google.maps.InfoWindow({ // Create a new InfoWindow
+                         content: data[val].username
+                        });
+                    google.maps.event.addListener(users[data[val].username], 'click', function() {
+                            infowindow[data[val].username].open(map, users[data[val].username]); 
+                        });
                 } else {
-                    users[val['username']].position = new google.maps.LatLng(val['userposition__latitude'],
-                                                                             val['userposition__longitude'])
+                    users[data[val].username].position = new google.maps.LatLng(data[val].userposition__latitude,
+                                                                                data[val].userposition__longitude)
                 }
-            });
+            };
         });
       }
 
