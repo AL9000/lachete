@@ -75,7 +75,7 @@
                             {% if user.is_authenticated %}
                                 <li><a href="/accounts/logout" role="button">Se déconnecter</a></li>
                             {% else %}
-                                <li><a href="." role="button">S'enregistrer</a></li>
+                                <li><a href="{% url 'website:register' %}" role="button">S'enregistrer</a></li>
                                 <li><a href="/accounts/login" role="button">Se connecter</a></li>
                             {% endif %}
                         </ul>

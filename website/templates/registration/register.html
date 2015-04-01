@@ -1,0 +1,30 @@
+{% extends "website/templates/layout.html" %}
+
+{% block title %}La Chête - login{% endblock %}
+
+{% block content %}
+
+    <h1>S'enregistrer</h1>
+
+    {% if error %}
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <strong>{{ error.message }}</strong>
+        </div>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Tu es déjà enregistré, {{ user.username }} !
+        </div>
+    {% else %}
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-default">Se connecter</button>
+        </form>
+    {% endif %}
+
+{% endblock %}
