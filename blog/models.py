@@ -12,7 +12,7 @@ class Article(models.Model):
     titre = models.CharField(max_length=50)
     contenu = models.TextField()
     date_de_parution = models.DateTimeField()
-    # image = models.ImageField()
+    image = models.ImageField(null=True, blank=True, upload_to="avatars/")
     categorie = models.ForeignKey(Categorie)
 
     def __str__(self):

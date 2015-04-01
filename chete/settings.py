@@ -38,8 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'chete',
-    'sondages',
     'website',
+    'sondages',
     'gps',
     'blog',
 )
@@ -107,3 +107,5 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
+LOGIN_REDIRECT_URL = '/'

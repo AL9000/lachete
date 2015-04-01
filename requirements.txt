@@ -1,5 +1,3 @@
 Django==1.7.7
-<<<<<<< HEAD
-=======
-djangorestframework
->>>>>>> 36f9dd837770ce21cf0b067599911058b978219e
+djangorestframework==3.1.1
+Pillow==2.7.0

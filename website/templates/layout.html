@@ -60,7 +60,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">La Chête</a>
+                        <a class="navbar-brand" href="{% url "website:home" %}">La Chête</a>
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -70,11 +70,13 @@
                             <li><a href="{% url 'gps:index' %}">Viendre !</a></li>
                             <li><a href="#">Photos</a></li>
                             <li><a href="{% url 'blog:index' %}">Blog</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
                                 <li><a href="/accounts/logout" role="button">Se déconnecter</a></li>
                             {% else %}
                                 <li><a href="." role="button">S'enregistrer</a></li>
-                                <li><a href="/accounts/logout" role="button">Se connecter</a></li>
+                                <li><a href="/accounts/login" role="button">Se connecter</a></li>
                             {% endif %}
                         </ul>
                     </div>

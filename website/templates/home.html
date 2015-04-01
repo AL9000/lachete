@@ -10,7 +10,7 @@
 
     <div class="jumbotron">
         <div class="container">
-            <h1>Bienvenue, ami chêteur !</h1>
+            <h1>Bienvenue, {% if user.is_authenticated %}{{ user.username }}{% else %}ami chêteur !{% endif %}</h1>
             <p>Toutes les dernières actus de la Chête ici.</p>
             <p>Et comme on est pas des batards, on te présente même le site !</p>
             <p><a class="btn btn-primary btn-lg" href="#" role="button">Super ! &raquo;</a></p>
@@ -81,7 +81,7 @@
         <div class="col-md-7 col-md-push-5">
             <h2 class="featurette-heading">Viendre ! <span class="text-muted">A deux c'est mieux.</span></h2>
             <p class="lead">Parce qu'on t'aime, on t'as même fait un GPS, c'est pas beau ça ?</p>
-            <p><a class="btn btn-primary btn-lg" href="{% url "gps:index" %}" role="button">VIENDRE &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="{% url "gps:index" %}" role="button">Viendre à La Chête &raquo;</a></p>
         </div>
         <div class="col-md-5 col-md-pull-7">
             <img class="featurette-image img-responsive center-block" src="{% static "website/images/satellite.jpg" %}" alt="Generic placeholder image">
