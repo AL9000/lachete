@@ -7,6 +7,9 @@
     .featurette-heading {
         text-align: center;
     }
+    .featurette-heading .btn {
+        text-align: center;
+    }
     .lead {
         text-align: center;
     }

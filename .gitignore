@@ -64,8 +64,10 @@ target/
 
 ## Project
 migrations/
-db.sqlite3
 .ropeproject/
 
 ## Venv
 lachete/
+
+# DB
+db.sqlite3
