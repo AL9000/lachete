@@ -7,10 +7,11 @@ from django.db.models import TextField
 
 class ArticleAdmin(MarkdownModelAdmin):
     prepopulated_fields = {'slug': ('titre',)}
-    list_display = ('titre', 'contenu', 'categorie')
+    list_display = ('titre', 'contenu', 'categorie',)
     list_filter = ['date_de_parution']
     search_fields = ['titre']
     formfield_overrides = {TextField: {'widget': AdminMarkdownWidget}}
+    readonly_fields = ('date_de_parution',)
 
 
 admin.site.register(Article, ArticleAdmin)

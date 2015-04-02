@@ -15,13 +15,13 @@ class ArticleQuerySet(models.QuerySet):
 
 class Article(models.Model):
     titre = models.CharField(max_length=50)
-    contenu = models.TextField()
     slug = models.SlugField(max_length=200, unique=True)
+    categorie = models.ForeignKey(Categorie)
     ouvert = models.BooleanField(default=True)
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
     date_de_parution = models.DateTimeField(auto_now_add=True)
     date_de_modification = models.DateTimeField(auto_now=True)
-    image = models.ImageField(null=True, blank=True, upload_to="avatars/")
-    categorie = models.ForeignKey(Categorie)
+    contenu = models.TextField()
 
     objects = ArticleQuerySet.as_manager()
 
