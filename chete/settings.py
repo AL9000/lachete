@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'sondages',
     'gps',
     'blog',
+    'django_markdown',
 )
 
 MIDDLEWARE_CLASSES = (

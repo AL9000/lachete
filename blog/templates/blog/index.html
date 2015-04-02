@@ -1,5 +1,7 @@
 {% extends "website/templates/layout.html" %}
+
 {% load static %}
+{% load django_markdown %}
 
 {% block title %}La Chête - Blog{% endblock %}
 
@@ -25,7 +27,7 @@
                             <h2 class="blog-post-title">{{ article.titre }}</h2>
                             <p class="blog-post-meta">{{ article.date_de_parution }}</p>
 
-                            <p>{{ article.contenu }}</p>
+                            <p>{{ article.contenu|markdown }}</p>
                         </div><!-- /.blog-post -->
                     {% endfor %}
                 {% else %}

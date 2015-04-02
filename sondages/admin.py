@@ -2,7 +2,7 @@ from django.contrib import admin
 from sondages.models import Choix, Question
 
 
-admin.AdminSite.site_header = "Administration des sondages de La Chête"
+admin.AdminSite.site_header = "Administration de La Chête"
 
 
 class ChoiceInline(admin.TabularInline):

@@ -1,5 +1,5 @@
 # lachete
 Le site web de La Chête, réalisé en Django.
 
-TODO :
+To do :
 - photo app upload

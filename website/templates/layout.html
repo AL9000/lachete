@@ -65,11 +65,12 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             {% comment %}TODO Change active tab{% endcomment %}
-                            <li class="active"><a href="{% url "website:home" %}">Accueil</a></li>
-                            <li><a href="{% url 'sondages:index' %}">Sondages</a></li>
-                            <li><a href="{% url 'gps:index' %}">Viendre !</a></li>
-                            <li><a href="#">Photos</a></li>
-                            <li><a href="{% url 'blog:index' %}">Blog</a></li>
+
+                            <li {% ifequal request.path ''%} class="active" {% endifequal%}><a href="{% url "website:home" %}">Accueil</a></li>
+                            <li {% ifequal request.path 'sondages'%} class="active" {% endifequal%}><a href="{% url 'sondages:index' %}">Sondages</a></li>
+                            <li {% ifequal request.path '/gps/'%} class="active" {% endifequal%}><a href="{% url 'gps:index' %}">Viendre !</a></li>
+                            <li {% ifequal request.path '/photos/'%} class="active" {% endifequal%}><a href="#">Photos</a></li>
+                            <li {% ifequal request.path '/blog/'%} class="active" {% endifequal%}><a href="{% url 'blog:index' %}">Blog</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
