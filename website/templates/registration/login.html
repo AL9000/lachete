@@ -1,6 +1,12 @@
 {% extends "website/templates/layout.html" %}
 
+{% load static %}
+
 {% block title %}La Chête - login{% endblock %}
+
+{% block style %}
+    <link href="{% static 'website/css/signin.css' %}" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
 
 {% block content %}
 
@@ -19,11 +25,37 @@
             Tu es déjà connecté, {{ user.username }} !
         </div>
     {% else %}
-        <form method="post" action=".">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-default">Se connecter</button>
+
+        <p>Pour accéder à ce contenu, tu dois te connécter</p>
+
+        <form method="post" action="." class="form-signin">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Connexion</h2>
+                </div>
+                <div class="panel-body">
+                    {% csrf_token %}
+                    {{ form.as_table }}
+                    <button type="submit" class="btn btn-info form-control">Se connecter</button>
+                </div>
+            </div>
+
+        </form>
+
+        <h2>Pas de compte ?</h2>
+        <form method="post" action="{% url 'website:register' %}" class="form-signin">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">En créer un !</h2>
+                </div>
+                <div class="panel-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-default form-control">S'enregister</button>
+                </div>
+            </div>
         </form>
     {% endif %}
+
 
 {% endblock %}

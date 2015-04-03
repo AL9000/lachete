@@ -4,6 +4,7 @@
 
 {% block style %}
     <link href="{% static 'website/css/home.css' %}" rel="stylesheet">
+    <!--<link href="bootstrap-tour.min.css" rel="stylesheet">-->
 {% endblock %}
 
 {% block content %}
@@ -13,7 +14,21 @@
             <h1>Bienvenue, {% if user.is_authenticated %}{{ user.username }}{% else %}ami chêteur !{% endif %}</h1>
             <p>Toutes les dernières actus de la Chête ici.</p>
             <p>Et comme on est pas des batards, on te présente même le site !</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Super ! &raquo;</a></p>
+            {# TODO bootstraptour alakon onclick #}
+            <p><a class="btn btn-primary btn-lg" href="#" role="button" id="click_me" onclick="yes();">Oh oui, clique moi fort ! &raquo;</a></p>
+            <script>
+                clicks = 0;
+                function yes() {
+                    alert('Plus fort !');
+                    clicks++;
+                    if(clicks==2){
+                        alert('Ce que tu cliques bien et fort !');
+                        alert('OH !');
+                        alert('OUI !');
+                        clicks=0;
+                    }
+                }
+            </script>
         </div>
     </div>
 

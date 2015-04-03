@@ -9,6 +9,10 @@ class HomeView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['last_question'] = Question.objects.last()
-        context['last_article'] = Article.objects.last()
+        context['last_question'] = Question.objects.filter(
+            open=True
+        ).latest('pub_date')
+        context['last_article'] = Article.objects.filter(
+            ouvert=True
+        ).latest('date_de_parution')
         return context

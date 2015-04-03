@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'gps',
     'blog',
     'django_markdown',
+    'photos',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,3 +112,5 @@ REST_FRAMEWORK = {
 }
 
 LOGIN_REDIRECT_URL = '/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
