@@ -1,0 +1,54 @@
+{% extends "website/templates/layout.html" %}
+
+{% load static %}
+
+{% block title %}La Chête - blog{% endblock %}
+
+{% block style %}
+    <link href="{% static 'blog/blog.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="blog-container">
+
+        <div class="blog-header">
+            <h1 class="blog-title">Le blog de la Chête</h1>
+            <p class="lead blog-description">Toutes les niouzes sur la plus belle teuf dans un champ.</p>
+        </div>
+
+        <div class="row">
+
+            {% block post %}
+            {% endblock %}
+
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+                <div class="sidebar-module sidebar-module-inset">
+                    <h4>A propos</h4>
+                    <p>Nous <em> - la chêteam - </em> voulons le meilleur pour nos chêteur. En vous proposant les
+                        dernières nouvelles de l'événement sur ce blog et en relayant tout ça sur Facebook, on fait en
+                        sorte que tu ne rates rien !</p>
+                </div>
+                <div class="sidebar-module">
+                    <h4>Catégories</h4>
+                    <ol class="list-unstyled">
+                        {% for categorie in categories %}
+                            {# TODO Filtrer articles par categorie#}
+                            <li><a href="#">{{ categorie }}</a></li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                <div class="sidebar-module">
+                    <h4>Elsewhere</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ol>
+                </div>
+            </div><!-- /.blog-sidebar -->
+
+        </div><!-- /.row -->
+    </div>
+
+{% endblock %}

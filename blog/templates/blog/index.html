@@ -1,72 +1,26 @@
-{% extends "website/templates/layout.html" %}
+{% extends "blog/templates/blog/layout.html" %}
 
-{% load static %}
 {% load django_markdown %}
 
-{% block title %}La Chête - Blog{% endblock %}
+{% block post %}
+    <div class="col-sm-8 blog-main">
+        {% for article in object_list %}
+            <div class="blog-post">
+                <h2 class="blog-post-title"><a href="{% url 'blog:detail' slug=article.slug %}">{{ article.titre }}</a></h2>
+                <p class="blog-post-meta">Publié le {{ article.date_de_parution }} dans les catégories <strong>{{ article.categorie.all|join:", " }}</strong></p>
+                <p>{{ article.contenu|markdown }}</p>
+            </div><!-- /.blog-post -->
+        {% endfor %}
 
-{% block style %}
-    <link href="{% static 'blog/blog.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block content %}
-
-    <div class="blog-container">
-
-        <div class="blog-header">
-            <h1 class="blog-title">Le blog de la Chête</h1>
-            <p class="lead blog-description">Toutes les niouzes sur la plus belle teuf dans un champ.</p>
-        </div>
-
-        <div class="row">
-
-            <div class="col-sm-8 blog-main">
-                {% for article in object_list %}
-                    <div class="blog-post">
-                        <h2 class="blog-post-title">{{ article.titre }}</h2>
-                        <p class="blog-post-meta">{{ article.date_de_parution }}</p>
-
-                        <p>{{ article.contenu|markdown }}</p>
-                    </div><!-- /.blog-post -->
-                {% endfor %}
-
-                <nav>
-                    <ul class="pager">
-                        {% if page_obj.has_previous %}
-                            <li class="previous"><a href="?page={{ page_obj.previous_page_number }}">← Précédents</a></li>
-                        {% endif %}
-                        {% if page_obj.has_next %}
-                            <li class="next"><a href="?page={{ page_obj.next_page_number }}">Suivants →</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div><!-- /.blog-main -->
-
-            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-                <div class="sidebar-module sidebar-module-inset">
-                    <h4>About</h4>
-                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                </div>
-                <div class="sidebar-module">
-                    <h4>Catégories</h4>
-                    <ol class="list-unstyled">
-                        {% for categorie in categories %}
-                            {# TODO Filtrer articles par categorie#}
-                            <li><a href="#">{{ categorie }}</a></li>
-                        {% endfor %}
-                    </ol>
-                </div>
-                <div class="sidebar-module">
-                    <h4>Elsewhere</h4>
-                    <ol class="list-unstyled">
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                    </ol>
-                </div>
-            </div><!-- /.blog-sidebar -->
-
-        </div><!-- /.row -->
-    </div>
-
+        <nav>
+            <ul class="pager">
+                {% if page_obj.has_previous %}
+                    <li class="previous"><a href="?page={{ page_obj.previous_page_number }}">← Précédents</a></li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                    <li class="next"><a href="?page={{ page_obj.next_page_number }}">Suivants →</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div><!-- /.blog-main -->
 {% endblock %}

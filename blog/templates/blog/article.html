@@ -1,11 +1,18 @@
-{% extends "website/templates/layout.html" %}
+{% extends "blog/templates/blog/layout.html" %}
 
-{% block title %}La Chête - blog{% endblock %}
+{% load django_markdown %}
 
-{% block content %}
+{% block post %}
+    <div class="col-sm-8 blog-main">
 
-    <h1>{{ article.titre }}<small> du {{ article.date_de_parution }}</small></h1>
-    {# <img src="{%  %}" #}
-    <p>{{ article.contenu }}</p>
+    <div class="blog-post">
+
+        <h2 class="blog-post-title"><a href="{% url 'blog:detail' slug=article.slug %}">{{ article.titre }}</a></h2>
+        <p class="blog-post-meta">Publié le {{ article.date_de_parution }} dans la catégorie <strong>{{ article.categorie.all|join:", " }}</strong></p>
+
+        <p>{{ article.contenu|markdown }}</p>
+
+    </div>
+    </div>
 
 {% endblock %}

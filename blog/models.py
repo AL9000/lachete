@@ -1,8 +1,9 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class Categorie(models.Model):
-    nom = models.CharField(max_length=50)
+    nom = models.SlugField(max_length=200, unique=True)
 
     def __str__(self):
         return self.nom
@@ -16,9 +17,8 @@ class ArticleQuerySet(models.QuerySet):
 class Article(models.Model):
     titre = models.CharField(max_length=50)
     slug = models.SlugField(max_length=200, unique=True)
-    categorie = models.ForeignKey(Categorie)
+    categorie = models.ManyToManyField(Categorie)
     ouvert = models.BooleanField(default=True)
-    image = models.ImageField(null=True, blank=True, upload_to="images/")
     date_de_parution = models.DateTimeField(auto_now_add=True)
     date_de_modification = models.DateTimeField(auto_now=True)
     contenu = models.TextField()
@@ -27,6 +27,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.titre
+
+    def get_absolute_url(self):
+        return reverse("detail", kwargs={"slug": self.slug})
 
     class Meta:
         verbose_name = "Article"
