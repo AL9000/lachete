@@ -1,0 +1,10 @@
+/* Because of fixed top navbar, must add this, see bootstrap doc*/
+body { padding-top: 70px; height: 100%; }
+html {height: 100%}
+
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
+}
