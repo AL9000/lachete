@@ -15,14 +15,9 @@ class IndexView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-
-        try:
-            context['last_question'] = Question.objects.filter(
-                pub_date__lte=timezone.now(),
-                open=True
-            ).latest('pub_date')
-        except Question.DoesNotExist:
-            context['last_question'] = None
+        context['last_question'] = Question.objects.filter(
+            open=True
+        ).latest('pub_date')
 
         """ latest_question_list ne contient pas la dernière question posée """
         context['latest_question_list'] = Question.objects.filter(
@@ -49,15 +44,8 @@ class DetailView(generic.DetailView):
         return Question.objects.filter(pub_date__lte=timezone.now())
 
 
-class ResultsView(generic.DetailView):
-    model = Question
+class ResultsView(DetailView):
     template_name = 'sondages/templates/sondages/resultats.html'
-
-    def get_queryset(self):
-        """
-        Exclu les questions qui ne sont pas encore publiées.
-        """
-        return Question.objects.filter(pub_date__lte=timezone.now())
 
 
 def vote(request, question_id):

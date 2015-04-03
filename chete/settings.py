@@ -111,5 +111,3 @@ REST_FRAMEWORK = {
 }
 
 LOGIN_REDIRECT_URL = '/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')

@@ -1,10 +1,14 @@
-from sondages.views import IndexView
+from django.views import generic
+from sondages.models import Question
+from blog.models import Article
 
 
-class HomeView(IndexView):
+class HomeView(generic.ListView):
+    model = Question
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context['path'] = context.get('path')
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['last_question'] = Question.objects.last()
+        context['last_article'] = Article.objects.last()
         return context

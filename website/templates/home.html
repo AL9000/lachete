@@ -35,11 +35,11 @@
         {% comment %}TODO Afficher le dernier article{% endcomment %}
         <div class="col-md-4">
             <h2>Dernier article :</h2>
-            {% if False %}
+            {% if last_article %}
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <p>{{ last_question.question_text }}<br/><small>Article publié le {{ last_question.pub_date }}</small></p>
-                        <a class="btn btn-sm btn-primary" href="{% url 'sondages:detail' last_question.id %}" role="button">Lire</a>
+                        <p>{{ last_article.titre }}<br/><small>Article publié le {{ last_article.date_de_parution }}</small></p>
+                        <a class="btn btn-sm btn-primary" href="{% url 'blog:detail' last_article.slug %}" role="button">Lire</a>
                     </div>
                 </div>
             {% else %}

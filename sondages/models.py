@@ -1,6 +1,12 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.core.urlresolvers import reverse
+
+
+class QuestionQuerySet(models.QuerySet):
+    def published(self):
+        return self.filter(open=True, pub_date__lte=timezone.now())
 
 
 class Question(models.Model):
@@ -19,6 +25,14 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question_text
+
+    def get_absolute_url(self):
+        return reverse("detail", kwargs={"slug": self.slug})
+
+    class Meta:
+        verbose_name = "Question"
+        verbose_name_plural = "Questions"
+        ordering = ["-pub_date"]
 
 
 class Choix(models.Model):

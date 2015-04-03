@@ -13,4 +13,7 @@
     .lead {
         text-align: center;
     }
+    .featurette p {
+        text-align:center
+    }
 }
