@@ -1,6 +1,11 @@
-{% extends "blog/templates/blog/layout.html" %}
+{% extends "blog/layout.html" %}
 
 {% load django_markdown %}
+{% block subtitle %}
+    {% if not index %}
+        <h3>Articles avec la catégorie : {{ categorie }}</h3>
+    {% endif %}
+{% endblock %}
 
 {% block post %}
     <div class="col-sm-8 blog-main">
