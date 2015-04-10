@@ -10,7 +10,7 @@ from gps.models import UserPosition
 
 
 class GPSView(TemplateView):
-    template_name = "gps.html"
+    template_name = "gps/gps.html"
 
     def get(self, request):
         return render(request,
