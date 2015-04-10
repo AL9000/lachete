@@ -55,12 +55,14 @@
                             {% comment %}
                             TODO Change active tab
                             {% endcomment %}
-
-                            <li {% ifequal request.path '/'%} class="active" {% endifequal%}><a href="{% url "website:home" %}">Accueil</a></li>
-                            <li {% ifequal request.path '/sondages/*'%} class="active" {% endifequal%}><a href="{% url 'sondages:index' %}">Sondages</a></li>
-                            <li {% ifequal request.path '/gps/*'%} class="active" {% endifequal%}><a href="{% url 'gps:index' %}">Viendre !</a></li>
-                            <li {% ifequal request.path '/photos/*'%} class="active" {% endifequal%}><a href="#">Photos</a></li>
-                            <li {% ifequal request.path '/blog/*'%} class="active" {% endifequal%}><a href="{% url 'blog:index' %}">Blog</a></li>
+                            <li  class="{% ifequal request.path ''%}active{% endifequal%}" ><a href="{% url "website:home" %}">Accueil</a></li>
+                            <li class="{% ifequal request.path '/sondages/*'%}active{% endifequal%}" ><a href="{% url 'sondages:index' %}">Sondages</a></li>
+                            <li class="{% ifequal request.path '/gps/*'%}active{% endifequal%}" ><a href="{% url 'gps:index' %}">Viendre !</a></li>
+                            <li class="{% ifequal request.path '/photos/*'%}active{% endifequal%}" ><a href="#">Photos</a></li>
+                            <li class="{% ifequal request.path '/blog/*'%}active{% endifequal%}" ><a href="{% url 'blog:index' %}">Blog</a></li>
+                            {% if user.is_staff %}
+                                <li class="{% ifequal request.path '/blog/*'%}active{% endifequal%}" ><a href="{% url 'website:organisation' %}">Organisation</a></li>
+                            {% endif %}
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
@@ -97,12 +99,6 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/static/js/jquery-1.11.2.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
-{% comment %}TODO A mettre uniquement sur sondages/detail.html{% endcomment %}
-<script type="text/javascript">
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
 {%  comment %}
 TODO IE10 viewport hack for Surface/desktop Windows 8 bug -> WTF is this ?
 {% endcomment %}
