@@ -1,4 +1,4 @@
-{% extends "website/templates/layout.html" %}
+{% extends "website/templates/website/layout.html" %}
 
 {% block title %}La Chête - Les sondages{% endblock %}
 
@@ -11,6 +11,13 @@
             <button type="button" class="close" data-dismiss="alert">×</button>
             Ce sondage est actuellement <strong>terminé</strong>, les votes sont clos.
         </div>
+    {% else %}
+        {% if request.user.username in question.votants.all %}
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Vous avez déjà voté !</strong>
+            </div>
+        {% endif %}
     {% endif %}
 
     <ul>
@@ -19,8 +26,7 @@
         {% endfor %}
     </ul>
 
-    {# TODO Ne permettre qu'un seul changement de vote par personne #}
     <p>Question ouverte le {{ question.pub_date }}</p>
-    <a href="{% url 'sondages:detail' question.id %}" class="btn btn-default{% if not question.open %} disabled{% endif %}" data-toggle="tooltip" data-placement="right" title="Un seul changement de vote !">Changer votre vote ?</a>
+    <a href="{% url 'sondages:index' %}" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"> Revenir aux sondages</span></a>
 
 {% endblock %}

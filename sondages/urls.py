@@ -1,12 +1,11 @@
 from django.conf.urls import patterns, url
 from django.contrib.auth.decorators import login_required
-from sondages import views
+from sondages.views import IndexView, DetailView, ResultsView, vote
 
 
-# TODO Slugify this
 urlpatterns = patterns('',
-    url(r'^$', login_required(views.IndexView.as_view()), name='index'),
-    url(r'^(?P<pk>\d+)/$', login_required(views.DetailView.as_view()), name='detail'),
-    url(r'^(?P<pk>\d+)/resultats/$', login_required(views.ResultsView.as_view()), name='resultats'),
-    url(r'^(?P<question_id>\d+)/vote/$', login_required(views.vote), name='vote'),
+    url(r'^$', login_required(IndexView.as_view()), name='index'),
+    url(r'^(?P<slug>\S+)/$', login_required(DetailView.as_view()), name='detail'),
+    url(r'^(?P<slug>\S+)/resultats$', login_required(ResultsView.as_view()), name='resultats'),
+    url(r'^(?P<slug>\S+)/vote$', login_required(vote), name='vote'),
 )

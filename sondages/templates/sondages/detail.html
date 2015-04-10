@@ -1,10 +1,8 @@
-{% extends "website/templates/layout.html" %}
+{% extends "website/templates/website/layout.html" %}
 
 {% block title %}La Chête - sondages{% endblock %}
 
 {% block content %}
-
-    {# TODO Permettre de revenir à la page précédente, breadcrum ??? #}
 
     <h1>{{ question.question_text }} <small>Séléctionne ton choix et vote !</small></h1>
 
@@ -15,28 +13,25 @@
         </div>
     {% endif %}
 
-    {% if question.open %}
-        <form action="{%  url 'sondages:vote' question.id %}" method="post">
+    {% if vote %}
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Tu as déjà voté !
+        </div>
+    {% endif %}
+
+    {% if question.open and not vote %}
+        <form action="{% url 'sondages:vote' question.slug %}" method="post">
             {% csrf_token %}
             {% for choix in question.choix_set.all %}
                 <input type="radio" name="choix" id="choix{{  forloop.counter }}" value="{{ choix.id }}" />
                 <label for="choix{{  forloop.counter }}">{{ choix.choix_text }}</label><br />
             {% endfor %}
-            {% if question.open %}
-                <button type="submit" class="btn btn-default">Voter</button>
-            {% else %}
-                {% comment %}TODO Attention ! Ici on peut quand même voter, en séléctionnant le radio button et en faisant Entrer !!!{% endcomment %}
-                <button type="submit" class="btn btn-default disabled" data-toggle="tooltip" data-placement="right" title="Les votes sont terminés !">Voter</button>
-            {% endif %}
+            <button type="submit" class="btn btn-primary">Voter</button>
+            <a href="{% url 'sondages:index' %}" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"> Revenir aux sondages</span></a>
         </form>
     {% else %}
-        <p>Ce sondage est terminé, </p>
+        <a href="{% url 'sondages:resultats' question.slug %}" class="btn btn-info"><span class="glyphicon glyphicon-arrow-right"> Voir les résultats</span></a>
     {% endif %}
-
-    {# TODO Permettre de passer d'une question à une autre #}
-    <ul class="pager">
-        <li class="previous disabled"><a href="#">← Précédente</a></li>
-        <li class="next"><a href="#">Suivante →</a></li>
-    </ul>
 
 {% endblock %}
