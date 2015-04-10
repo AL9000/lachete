@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Article, Categorie
+from blog.models import Article, Categorie, Commentaire
 from django_markdown.admin import MarkdownModelAdmin
 from django_markdown.widgets import AdminMarkdownWidget
 from django.db.models import TextField
@@ -16,3 +16,4 @@ class ArticleAdmin(MarkdownModelAdmin):
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Categorie)
+admin.site.register(Commentaire)

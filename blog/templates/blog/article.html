@@ -5,14 +5,48 @@
 {% block post %}
     <div class="col-sm-8 blog-main">
 
-    <div class="blog-post">
+        <div class="blog-post">
 
-        <h2 class="blog-post-title"><a href="{% url 'blog:detail' slug=article.slug %}">{{ article.titre }}</a></h2>
-        <p class="blog-post-meta">Publié le {{ article.date_de_parution }} dans la catégorie <strong>{{ article.categorie.all|join:", " }}</strong></p>
+            <h2 class="blog-post-title"><a href="{% url 'blog:detail' slug=article.slug %}">{{ article.titre }}</a></h2>
+            <p class="blog-post-meta">
+                {% for cat in article.categorie.all %}
+                    <a href="{% url 'blog:categorie' cat %}" ><span class="label label-info"><strong>{{ cat }}</strong></span></a>
+                {% endfor %}
+                Publié le {{ article.date_de_parution }}
+            </p>
 
-        <p>{{ article.contenu|markdown }}</p>
+            <p>{{ article.contenu|markdown }}</p>
 
-    </div>
+            <h3 id="commentaires">Vos commentaires alakon</h3>
+
+            {% if article.commentaire_set.all.exists %}
+                {% for com in article.commentaire_set.all %}
+                    <div class="well">
+                        <h3>{{ com.titre }}{% if com.utilisateur.is_staff %}<small class="text-danger"> Réponse Chêteam</small>{% endif %}</h3>
+                        <p class="small text-muted">Commentaire posté par {{ com.utilisateur.username }} le {{ com.date_de_parution }}</p>
+                        <p>{{ com.contenu }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Aucuns commentaires pour le moment.</p>
+            {% endif %}
+
+            {# TODO Utiliser le formulaire de post d'un commentaire #}
+            {# Là je vois pas trop comment afficher le formulaire de la CommentaireView ... #}
+            <form method="post" action="{% url 'blog:commenter' article.slug %}" class="form-signin">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Poster un commentaire !</h2>
+                    </div>
+                    <div class="panel-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-default form-control">Poster</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
     </div>
 
 {% endblock %}

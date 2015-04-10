@@ -1,6 +1,7 @@
-from blog.models import Article, Categorie
+from blog.models import Article, Categorie, Commentaire
 from django.views import generic
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 
 class IndexView(generic.ListView):
@@ -39,3 +40,18 @@ class DetailView(generic.DetailView):
         context = super(DetailView, self).get_context_data(**kwargs)
         context['categories'] = Categorie.objects.distinct()
         return context
+
+
+class CommentaireCreate(generic.CreateView):
+    model = Commentaire
+    fields = ['titre', 'contenu']
+
+    def get_success_url(self):
+        return reverse("blog:detail", kwargs={"slug": self.kwargs['slug']})
+
+    def form_valid(self, form):
+        commentaire = form.save(commit=False)
+        commentaire.article = get_object_or_404(Article, slug=self.kwargs['slug'])
+        commentaire.utilisateur = self.request.user
+        commentaire.save()
+        return HttpResponseRedirect(self.get_success_url())

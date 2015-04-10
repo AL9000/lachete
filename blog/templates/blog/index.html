@@ -1,19 +1,34 @@
 {% extends "blog/layout.html" %}
 
 {% load django_markdown %}
+
 {% block subtitle %}
     {% if not index %}
-        <h3>Articles avec la catégorie : {{ categorie }}</h3>
+        <h3 class="text-info">Articles avec la catégorie : {{ categorie }}</h3>
     {% endif %}
 {% endblock %}
 
 {% block post %}
     <div class="col-sm-8 blog-main">
+
+        {% if object_list.count == 0 %}
+            <p>Pas encore d'articles pour le moment, mais ça va venir !</p>
+        {% endif %}
+
         {% for article in object_list %}
             <div class="blog-post">
                 <h2 class="blog-post-title"><a href="{% url 'blog:detail' slug=article.slug %}">{{ article.titre }}</a></h2>
-                <p class="blog-post-meta">Publié le {{ article.date_de_parution }} dans les catégories <strong>{{ article.categorie.all|join:", " }}</strong></p>
+
+                <p class="blog-post-meta">
+                    {% for cat in article.categorie.all %}
+                        <a href="{% url 'blog:categorie' cat %}" ><span class="label label-info"><strong>{{ cat }}</strong></span></a>
+                    {% endfor %}
+                    Publié le {{ article.date_de_parution }}
+                </p>
                 <p>{{ article.contenu|markdown }}</p>
+                <ul class="nav nav-pills">
+                    <li><a href="{% url "blog:detail" article.slug %}">Commentaires <span class="badge">{{ article.commentaire_set.all.count }}</span></a></li>
+                </ul>
             </div><!-- /.blog-post -->
         {% endfor %}
 
