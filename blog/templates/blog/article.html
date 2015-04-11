@@ -31,17 +31,28 @@
                 <p>Aucuns commentaires pour le moment.</p>
             {% endif %}
 
-            {# TODO Utiliser le formulaire de post d'un commentaire #}
-            {# Là je vois pas trop comment afficher le formulaire de la CommentaireView ... #}
-            <form method="post" action="{% url 'blog:commenter' article.slug %}" class="form-signin">
+            <form method="post" action="{% url 'blog:commenter' article.slug %}" class="form-horizontal">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h2 class="panel-title">Poster un commentaire !</h2>
+                        <h2 class="panel-title">Commenter</h2>
                     </div>
                     <div class="panel-body">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn btn-default form-control">Poster</button>
+                        <fieldset>
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="titre" class="col-lg-2 control-label">Titre</label>
+                                <div class="col-lg-10">
+                                    <input id="titre" type="text" name="titre" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contenu" class="col-lg-2 control-label">Message</label>
+                                <div class="col-lg-10">
+                                    <textarea id="contenu" name="contenu" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-default form-control">Poster</button>
+                        </fieldset>
                     </div>
                 </div>
             </form>
