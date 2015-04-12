@@ -63,7 +63,6 @@ target/
 *.iws
 
 ## Project
-migrations/
 .ropeproject/
 
 ## Venv
