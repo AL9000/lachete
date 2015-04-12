@@ -52,16 +52,14 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            {% comment %}
-                            TODO Change active tab
-                            {% endcomment %}
-                            <li  class="{% ifequal request.path ''%}active{% endifequal%}" ><a href="{% url "website:home" %}">Accueil</a></li>
-                            <li class="{% ifequal request.path '/sondages/*'%}active{% endifequal%}" ><a href="{% url 'sondages:index' %}">Sondages</a></li>
-                            <li class="{% ifequal request.path '/gps/*'%}active{% endifequal%}" ><a href="{% url 'gps:index' %}">Viendre !</a></li>
-                            <li class="{% ifequal request.path '/photos/*'%}active{% endifequal%}" ><a href="#">Photos</a></li>
-                            <li class="{% ifequal request.path '/blog/*'%}active{% endifequal%}" ><a href="{% url 'blog:index' %}">Blog</a></li>
+                            {# C'est pas tip top pour determiner le menu actif, mais je voulais un truc simple :) #}
+                            <li  class="{% ifequal request.path|slice:":5" '/'%}active{% endifequal%}" ><a href="{% url "website:home" %}">Accueil</a></li>
+                            <li class="{% ifequal request.path|slice:":5" '/sond'%}active{% endifequal%}" ><a href="{% url 'sondages:index' %}">Sondages</a></li>
+                            <li class="{% ifequal request.path|slice:":5" '/gps/'%}active{% endifequal%}" ><a href="{% url 'gps:index' %}">Viendre !</a></li>
+                            <li class="{% ifequal request.path|slice:":5" '/phot'%}active{% endifequal%}" ><a href="#">Photos</a></li>
+                            <li class="{% ifequal request.path|slice:":5" '/blog'%}active{% endifequal%}" ><a href="{% url 'blog:index' %}">Blog</a></li>
                             {% if user.is_staff %}
-                                <li class="{% ifequal request.path '/blog/*'%}active{% endifequal%}" ><a href="{% url 'website:organisation' %}">Organisation</a></li>
+                                <li class="{% ifequal request.path '/organisation/'%}active{% endifequal%}" ><a href="{% url 'website:organisation' %}">Organisation</a></li>
                             {% endif %}
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -91,6 +89,8 @@
         <hr>
         <p class="pull-right"><a href="#">Haut de page</a></p>
         <p>&copy; La Chête !</p>
+        <p>{{ request.path }}</p>
+        <p>{{ request.path|slice:":5" }}</p>
     </div>
 </div>
 
