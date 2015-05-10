@@ -39,7 +39,7 @@ class Article(models.Model):
 
 
 class Commentaire(models.Model):
-    titre = models.CharField(max_length=50)
+    titre = models.CharField(max_length=25)
     contenu = models.TextField()
     article = models.ForeignKey(Article)
     utilisateur = models.ForeignKey(User)

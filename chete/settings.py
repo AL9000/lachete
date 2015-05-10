@@ -7,7 +7,6 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-# TODO Intégration des documents sur Google Drive pour les admins
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -19,14 +18,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ps*ozs7=qn2p!i6o0w6zl(!41==fu4jl)jta##5znfx&(9otwr'
+SECRET_KEY = 'lachetec!dz0t9g+kddc_q=s=8*9ioz83p8nhj8_45ahe-2_%3drz$sh_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['alouest.pythonanywhere.com']
 
 
 # Application definition
@@ -94,8 +93,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = (
-    os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
 )
 
 TEMPLATE_LOADERS = (

@@ -32,6 +32,13 @@
             {% endif %}
 
             <form method="post" action="{% url 'blog:commenter' article.slug %}" class="form-horizontal">
+                {% if form.subject.errors %}
+                    <ol>
+                        {% for error in form.subject.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ol>
+                {% endif %}
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h2 class="panel-title">Commenter</h2>
