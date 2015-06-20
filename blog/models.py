@@ -25,6 +25,8 @@ class Article(models.Model):
     date_de_parution = models.DateTimeField(auto_now_add=True, editable=False)
     date_de_modification = models.DateTimeField(auto_now=True)
     contenu = models.TextField()
+    video = models.URLField(blank=True, help_text="Copie/colle l'url d'une vidéo YouTube ici et elle sera "
+                                                  "insérée à la fin de l'article.")
 
     objects = ArticleQuerySet.as_manager()
 
@@ -45,6 +47,7 @@ class Article(models.Model):
             if not Article.objects.filter(slug=self.slug).exists():
                 break
             self.slug = '%s-%d' % (orig, x)
+        self.video = self.video.replace('watch?v=', 'embed/')
         super(Article, self).save(*args, **kwargs)
 
 

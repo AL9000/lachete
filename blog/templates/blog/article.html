@@ -17,6 +17,10 @@
 
             <p>{{ article.contenu|markdown }}</p>
 
+            {% if article.video %}
+                <iframe width="640" height="390" src="{{ article.video }}" frameborder="0" style="margin: 20px 0 20px 0" allowfullscreen></iframe>
+            {% endif %}
+
             <h3 id="commentaires">Vos commentaires alakon</h3>
 
             {% if article.commentaire_set.all.exists %}
@@ -30,7 +34,7 @@
             {% else %}
                 <p>Aucuns commentaires pour le moment.</p>
             {% endif %}
-
+            {# TODO Gérer les erreurs ! Affichage du template commentaire_form dans un modal par exemple #}
             <form method="post" action="{% url 'blog:commenter' article.slug %}" class="form-horizontal">
                 {% if form.subject.errors %}
                     <ol>

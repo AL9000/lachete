@@ -6,10 +6,16 @@ from django.db.models import TextField
 
 
 class ArticleAdmin(MarkdownModelAdmin):
-    list_display = ['titre', 'categories', 'apperçu_du_texte', 'date_de_parution', 'ouvert']
+    list_display = ['titre', 'categories', 'apperçu_du_texte', 'lien_video', 'date_de_parution', 'ouvert']
     list_filter = ['date_de_parution']
     search_fields = ['titre']
     formfield_overrides = {TextField: {'widget': AdminMarkdownWidget}}
+
+    def lien_video(self, obj):
+        if obj.video:
+            return True
+        return False
+    lien_video.boolean = True
 
     def apperçu_du_texte(self, obj):
         if len(obj.contenu) > 40:
