@@ -26,6 +26,11 @@
                     Publié le {{ article.date_de_parution }}
                 </p>
                 <p>{{ article.contenu|markdown }}</p>
+
+                {% if article.video %}
+                    <iframe width="640" height="390" src="{{ article.video }}" frameborder="0" style="margin: 20px 0 20px 0" allowfullscreen></iframe>
+                {% endif %}
+            
                 <ul class="nav nav-pills">
                     <li><a href="{% url "blog:detail" article.slug %}">Commentaires <span class="badge">{{ article.commentaire_set.all.count }}</span></a></li>
                 </ul>
