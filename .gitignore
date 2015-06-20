@@ -70,3 +70,6 @@ lachete/
 
 # DB
 db.sqlite3
+
+# Main static folder
+static/
