@@ -1,6 +1,9 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.utils.text import slugify
+import itertools
+
 
 
 class Categorie(models.Model):
@@ -17,7 +20,7 @@ class ArticleQuerySet(models.QuerySet):
 
 class Article(models.Model):
     titre = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, editable=False)
     categorie = models.ManyToManyField(Categorie)
     ouvert = models.BooleanField(default=True)
     date_de_parution = models.DateTimeField(auto_now_add=True)
@@ -36,6 +39,15 @@ class Article(models.Model):
         verbose_name = "Article"
         verbose_name_plural = "Articles"
         ordering = ["-date_de_parution"]
+
+    def save(self, *args, **kwargs):
+        self.slug = orig = slugify(self.titre)
+        for x in itertools.count(1):
+            if not Article.objects.filter(slug=self.slug).exists():
+                break
+            self.slug = '%s-%d' % (orig, x)
+        super(Article, self).save(*args, **kwargs)
+
 
 
 class Commentaire(models.Model):
