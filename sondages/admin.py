@@ -11,11 +11,6 @@ class ChoiceInline(admin.TabularInline):
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None,      {'fields': ['question_text', 'slug', 'open']}),
-        ('Information date', {'fields': ['pub_date']}),
-    ]
-    prepopulated_fields = {'slug': ('question_text',)}
     inlines = [ChoiceInline]
     list_display = ('question_text', 'open', 'pub_date')
     list_filter = ['pub_date']
