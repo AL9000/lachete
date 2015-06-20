@@ -5,7 +5,6 @@ from django.utils.text import slugify
 import itertools
 
 
-
 class Categorie(models.Model):
     nom = models.SlugField(max_length=200, unique=True)
 
@@ -23,7 +22,7 @@ class Article(models.Model):
     slug = models.SlugField(max_length=200, unique=True, editable=False)
     categorie = models.ManyToManyField(Categorie)
     ouvert = models.BooleanField(default=True)
-    date_de_parution = models.DateTimeField(auto_now_add=True)
+    date_de_parution = models.DateTimeField(auto_now_add=True, editable=False)
     date_de_modification = models.DateTimeField(auto_now=True)
     contenu = models.TextField()
 
@@ -47,7 +46,6 @@ class Article(models.Model):
                 break
             self.slug = '%s-%d' % (orig, x)
         super(Article, self).save(*args, **kwargs)
-
 
 
 class Commentaire(models.Model):

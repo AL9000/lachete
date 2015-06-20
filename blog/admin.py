@@ -6,11 +6,18 @@ from django.db.models import TextField
 
 
 class ArticleAdmin(MarkdownModelAdmin):
-    list_display = ('titre', 'contenu',)
+    list_display = ('titre', 'categories', 'apperçu_du_texte', 'date_de_parution', 'ouvert')
     list_filter = ['date_de_parution']
     search_fields = ['titre']
     formfield_overrides = {TextField: {'widget': AdminMarkdownWidget}}
-    readonly_fields = ('date_de_parution',)
+
+    def apperçu_du_texte(self, obj):
+        if len(obj.contenu) > 40:
+            return obj.contenu[0:40] + '...'
+        return obj.contenu
+
+    def categories(self, obj):
+        return ', '.join([str(a) for a in obj.categorie.all()])
 
 
 admin.site.register(Article, ArticleAdmin)
