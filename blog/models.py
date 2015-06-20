@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.conf import settings
 import itertools
 
 
@@ -55,5 +55,5 @@ class Commentaire(models.Model):
     titre = models.CharField(max_length=25)
     contenu = models.TextField()
     article = models.ForeignKey(Article)
-    utilisateur = models.ForeignKey(User)
+    utilisateur = models.ForeignKey(settings.AUTH_USER_MODEL)
     date_de_parution = models.DateTimeField(auto_now_add=True)

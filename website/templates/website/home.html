@@ -31,7 +31,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <h2>Dernier sondage :</h2>
             {% if last_question %}
                 <div class="panel panel-default">
@@ -45,7 +45,7 @@
             {% endif %}
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <h2>Dernier article :</h2>
             {% if last_article %}
                 <div class="panel panel-default">
@@ -59,7 +59,7 @@
             {% endif %}
         </div>
 
-        <div class="col-md-4">
+        {% comment %}<div class="col-md-4">
             <h2>Derniere photo :</h2>
             {% if False %}
                 <div class="panel panel-default">
@@ -71,7 +71,7 @@
             {% else %}
                 <p>Pas de photos disponibles pour le moment :(</p>
             {% endif %}
-        </div>
+        </div>{% endcomment %}
     </div>
 
     <hr class="featurette-divider">
@@ -102,7 +102,7 @@
 
     <hr class="featurette-divider">
 
-    <div class="row featurette">
+    {% comment %}<div class="row featurette">
         <div class="col-md-7">
             <h2 class="featurette-heading">Les photos. <span class="text-muted">Les souvenirs.</span></h2>
             <p class="lead">Publie directement les photos sur le site de la Chête !</p>
@@ -113,15 +113,15 @@
         </div>
     </div>
 
-    <hr class="featurette-divider">
+    <hr class="featurette-divider">{% endcomment %}
 
     <div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
+        <div class="col-md-7">
             <h2 class="featurette-heading">Blog. <span class="text-muted">La force des années 2000.</span></h2>
             <p class="lead">Parce qu'on est old school, on maintiens un blog avec les actualité de la Chête. Pleins d'infos inutiles à lire.</p>
             <p><a class="btn btn-primary btn-lg" href="{% url 'blog:index' %}" role="button">Voir les articles &raquo;</a></p>
         </div>
-        <div class="col-md-5 col-md-pull-7">
+        <div class="col-md-5">
             <img class="featurette-image img-responsive center-block" src="{% static "website/images/blog.gif" %}" alt="Generic placeholder image">
         </div>
     </div>

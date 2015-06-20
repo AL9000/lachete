@@ -1,8 +1,9 @@
-{% extends "website/templates/website/layout.html" %}
+{% extends "website/layout.html" %}
 
 {% load static %}
+{% load bootstrap %}
 
-{% block title %}La Chête - login{% endblock %}
+{% block title %}La Chête - se connecter{% endblock %}
 
 {% block style %}
     <link href="{% static 'website/css/signin.css' %}" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
@@ -35,7 +36,8 @@
                     </div>
                     <div class="panel-body">
                         {% csrf_token %}
-                        {{ form.as_table }}
+                        {{ form|bootstrap }}
+                        <p><a href="{% url 'website:reset' %}">Mot de passe oublié ? Clique ici.</a></p>
                         <button type="submit" class="btn btn-primary form-control">Se connecter</button>
                     </div>
                 </div>
@@ -50,7 +52,7 @@
                     </div>
                     <div class="panel-body">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        {{ form|bootstrap }}
                         <button type="submit" class="btn btn-info form-control">S'enregister</button>
                     </div>
                 </div>

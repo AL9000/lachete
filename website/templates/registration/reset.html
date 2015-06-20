@@ -1,0 +1,49 @@
+{% extends 'website/layout.html' %}
+
+{% load static %}
+
+{% load bootstrap %}
+
+{% block style %}
+    <link href="{% static 'website/css/signin.css' %}" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block title %}La Chête - Mot de passe oublié{% endblock %}
+
+{% block content %}
+
+    <div class="login">
+
+        <h1>Mot de passe oublié ?</h1>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if error %}
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <strong>{{ error.message }}</strong>
+            </div>
+        {% endif %}
+
+        <form method="post" action="" class="form-signin">
+            <div class="panel">
+                <div class="panel-body">
+                    <p>Pour obtenir un nouveau mot de passe, veuillez renseigner votre adresse mail ci-dessous.</p>
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    <button type="submit" class="btn btn-primary form-control">Envoyer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

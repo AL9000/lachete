@@ -1,12 +1,13 @@
-{% extends "website/templates/website/layout.html" %}
+{% extends "website/layout.html" %}
 
 {% load static %}
+{% load bootstrap %}
 
 {% block style %}
     <link href="{% static 'website/css/signin.css' %}" rel="stylesheet" xmlns="http://www.w3.org/1999/html">
 {% endblock %}
 
-{% block title %}La Chête - login{% endblock %}
+{% block title %}La Chête - S'enregistrer{% endblock %}
 
 {% block content %}
 
@@ -32,7 +33,7 @@
                     </div>
                     <div class="panel-body">
                         {% csrf_token %}
-                        {{ form.as_table }}
+                        {{ form|bootstrap }}
                         <button type="submit" class="btn btn-info form-control">S'enregister</button>
                     </div>
                 </div>

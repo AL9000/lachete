@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils.text import slugify
 import itertools
 
@@ -12,7 +12,7 @@ class Question(models.Model):
                                                                  "la question sera publiée à cette date.")
     open = models.BooleanField('question ouverte au vote ?', default=True, help_text='Décocher cette case pour fermer '
                                                                                      'la question')
-    votants = models.ManyToManyField(User, editable=False)
+    votants = models.ManyToManyField(settings.AUTH_USER_MODEL, editable=False)
 
     def __str__(self):
         return self.question_text

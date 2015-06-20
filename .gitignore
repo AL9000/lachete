@@ -65,8 +65,9 @@ target/
 ## Project
 .ropeproject/
 
-## Venv
+## Venvs
 lachete/
+venv_chete/
 
 # DB
 db.sqlite3

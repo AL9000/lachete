@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserPosition',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(primary_key=True, serialize=False, auto_created=True, verbose_name='ID')),
                 ('latitude', models.FloatField(null=True, default=None)),
                 ('longitude', models.FloatField(null=True, default=None)),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),

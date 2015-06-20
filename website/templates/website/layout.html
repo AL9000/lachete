@@ -56,7 +56,7 @@
                             <li  class="{% ifequal request.path|slice:":5" '/'%}active{% endifequal%}" ><a href="{% url "website:home" %}">Accueil</a></li>
                             <li class="{% ifequal request.path|slice:":5" '/sond'%}active{% endifequal%}" ><a href="{% url 'sondages:index' %}">Sondages</a></li>
                             <li class="{% ifequal request.path|slice:":5" '/gps/'%}active{% endifequal%}" ><a href="{% url 'gps:index' %}">Viendre !</a></li>
-                            <li class="{% ifequal request.path|slice:":5" '/phot'%}active{% endifequal%}" ><a href="#">Photos</a></li>
+                            {# <li class="{% ifequal request.path|slice:":5" '/phot'%}active{% endifequal%}" ><a href="#">Photos</a></li> #}
                             <li class="{% ifequal request.path|slice:":5" '/blog'%}active{% endifequal%}" ><a href="{% url 'blog:index' %}">Blog</a></li>
                             {% if user.is_staff %}
                                 <li class="{% ifequal request.path '/organisation/'%}active{% endifequal%}" ><a href="{% url 'website:organisation' %}">Organisation</a></li>
@@ -85,10 +85,10 @@
 
 
 <div id="footer">
+    <hr>
     <div class="container">
-        <hr>
         <p class="pull-right"><a href="#">Haut de page</a></p>
-        <p>&copy; La Chête !</p>
+        <p><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> La Chête ! Site réalisé avec amour par <a href="https://github.com/Al-Ouest">Al Ouest</a> & <a href="https://github.com/Ganapati">Ganapati</a> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></p>
     </div>
 </div>
 

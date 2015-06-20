@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'lachetec!dz0t9g+kddc_q=s=8*9ioz83p8nhj8_45ahe-2_%3drz$sh_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'blog',
     'django_markdown',
     'photos',
+    'bootstrapform',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,8 +110,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR),)
 
-FIELD_POSITION = {'latitude': '47.206248',
-                  'longitude': '-2.138146'}
+FIELD_POSITION = {'latitude': '',
+                  'longitude': ''}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -121,3 +122,17 @@ REST_FRAMEWORK = {
 LOGIN_REDIRECT_URL = '/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+GRAPPELLI_ADMIN_TITLE = 'La Chête'
+
+AUTH_USER_MODEL = 'website.MyUser'
+
+# Mail infos
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'la.chete.cheteam@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
