@@ -54,4 +54,3 @@ class Commentaire(models.Model):
     article = models.ForeignKey(Article)
     utilisateur = models.ForeignKey(User)
     date_de_parution = models.DateTimeField(auto_now_add=True)
-    date_de_modification = models.DateTimeField(auto_now=True)

@@ -6,7 +6,7 @@ from django.db.models import TextField
 
 
 class ArticleAdmin(MarkdownModelAdmin):
-    list_display = ('titre', 'categories', 'apperçu_du_texte', 'date_de_parution', 'ouvert')
+    list_display = ['titre', 'categories', 'apperçu_du_texte', 'date_de_parution', 'ouvert']
     list_filter = ['date_de_parution']
     search_fields = ['titre']
     formfield_overrides = {TextField: {'widget': AdminMarkdownWidget}}
@@ -20,6 +20,11 @@ class ArticleAdmin(MarkdownModelAdmin):
         return ', '.join([str(a) for a in obj.categorie.all()])
 
 
+class CommentaireAdmin(admin.ModelAdmin):
+    list_display = ['utilisateur', 'titre', 'contenu', 'article', 'date_de_parution']
+    ordering = ['-date_de_parution']
+
+
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Categorie)
-admin.site.register(Commentaire)
+admin.site.register(Commentaire, CommentaireAdmin)
