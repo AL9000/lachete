@@ -27,7 +27,7 @@
                 {% for com in article.commentaire_set.all %}
                     <div class="well">
                         <h3>{{ com.titre }}{% if com.utilisateur.is_staff %}<small class="text-danger"> Réponse Chêteam</small>{% endif %}</h3>
-                        <p class="small text-muted">Commentaire posté par {{ com.utilisateur.username }} le {{ com.date_de_parution }}</p>
+                        <p class="small text-muted">Commentaire posté par <b class="text-info">{{ com.utilisateur.username }}</b> le {{ com.date_de_parution }}</p>
                         <p>{{ com.contenu }}</p>
                     </div>
                 {% endfor %}
