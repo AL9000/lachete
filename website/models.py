@@ -40,9 +40,9 @@ class MyUser(AbstractBaseUser):
         max_length=255,
         unique=True,
         )
-    username = models.CharField(max_length=20, verbose_name="Nom d'utilisateur")
+    username = models.CharField(max_length=20, verbose_name="nom d'utilisateur")
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False, verbose_name="membre de la chêteam")
 
     objects = MyUserManager()
 
