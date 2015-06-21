@@ -14,10 +14,12 @@ class IndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         if Question.objects.all().exists():
-            context['last_question'] = Question.objects.filter(
+            test = Question.objects.filter(
                 pub_date__lte=timezone.now(),
                 open=True
-            ).order_by('-pub_date')[0]
+            ).order_by('-pub_date')
+            if test:
+                context['last_question'] = test[0]
 
             """ latest_question_list ne contient pas la dernière question posée """
             context['latest_question_list'] = Question.objects.filter(
