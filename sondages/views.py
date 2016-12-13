@@ -20,12 +20,8 @@ class IndexView(generic.ListView):
             ).order_by('-pub_date')
             if test:
                 context['last_question'] = test[0]
-
-            """ latest_question_list ne contient pas la dernière question posée """
-            context['latest_question_list'] = Question.objects.filter(
-                pub_date__lte=timezone.now(),
-                open=True
-            ).order_by('-pub_date')[1:]
+                """ latest_question_list ne contient pas la dernière question posée """
+                context['latest_question_list'] = test[1:]
 
             context['closed_question_list'] = Question.objects.filter(
                 pub_date__lte=timezone.now(),
